@@ -1,9 +1,3 @@
-FROM website 
-RUN apt-get update 
-RUN apt-get install -y apache2 
-RUN apt-get install -y apache2-utils 
-RUN apt-get clean 
-EXPOSE 8200
-CMD ["mkdir", "-p", "/var/www/html"]
-ADD index.html /var/www/html/
-CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+FROM nginx:1.10.1-alpine
+COPY index.html  /usr/share/nginx/html/
+EXPOSE 80
